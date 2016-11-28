@@ -1,0 +1,92 @@
+<template name="mainLeft">
+
+  
+  <article class="uk-article">
+    <div class="uk-grid uk-grid-small">
+      <div class="uk-width-1-1">
+        <h1 class="uk-article-title">Indicators</h1>
+        <div class="uk-text-small uk-text-success uk-text-bold"
+             style="margin-top: -15px; margin-left: 3px;">Keeping Track</div>
+      </div>
+    </div>
+  </article>
+  
+  <div class="uk-grid"> 
+    <div class="uk-width-1-1 uk-text-center">
+      <article class="uk-comment">
+        <header class="uk-comment-header uk-text-center">
+          <h4 class="uk-comment-title ec-contrasted">Profit Window</h4>
+          <hr style="margin: 0 0 0 0">
+          <div class="uk-text-small uk-text-success">Main Indicators</div>
+        </header>
+        <div class="uk-comment-body">
+          <div class="uk-text-small">
+            Yr: <span class="uk-text-primary">U$ 121.398,00</span>,
+            Mo: <span class="uk-text-primary">U$ 2.398,00</span>,
+            Day: <span class="uk-text-primary">U$ 1.398,00</span>
+          </div>
+          <div>
+            <div class="uk-text-bold" >Net Growth: </div>
+            <span class="uk-text-primary">178,22%</span> 
+            <div class="uk-badge uk-badge-success" data-uk-tooltip title="Max. Percentage">4.22%</div>
+            <div class="uk-badge uk-badge-warning" data-uk-tooltip title="Avg. Percentage">0.36%</div>
+            <div class="uk-badge uk-badge-danger" data-uk-tooltip title="Min. Percentage">-1.67%</div>
+          </div>
+          <div class="uk-text-small">
+            Standard: <span class="uk-text-primary">98,89%</span> 
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="uk-grid"> 
+    <div class="uk-width-1-1 uk-text-center">
+      <article class="uk-comment">
+      <header class="uk-comment-header uk-text-center">
+        <h4 class="uk-comment-title ec-contrasted">Top Startups</h4>
+        <hr style="margin: 0 0 0 0">
+        <div class="uk-text-small uk-text-success">Most Valuable Startups</div>
+      </header>
+      <div id="ec-left-chart">
+        <div id="ec-pre" class="uk-width-1-1 uk-container-center uk-vertical-align-middle" >
+          <center>
+            <img class="uk-width-1-1 uk-container-center" style="padding-top:100px;max-width:64px;margin:auto" src="{{ROOT}}/pre.gif">
+          </center>
+        </div> 
+      </div>
+    </article>
+    </div>
+  </div>
+  
+  <div class="uk-grid">
+    <div class="uk-width-1-1 uk-text-center">
+      <article class="uk-comment">
+        <header class="uk-comment-header uk-text-center">
+          <h4 class="uk-comment-title ec-contrasted">Trading Startups</h4>
+          <hr style="margin: 0 0 0 0">
+          <div class="uk-text-small uk-text-success">Get to know them</div>
+        </header>
+        <div>
+          <hr style="margin:0" >
+          {{#each startups}}
+            <div>
+              <a href="{{ROOT}}/display/startups/{{id}}" class="ec-no-link">
+                <div class="uk-panel uk-panel-box uk-text-bold">{{name}}
+                  <span class="uk-text-small" >(2/100)</span><br>
+                  <div class="uk-badge uk-badge-notification uk-badge-success">625/625</div>
+                  <a href="#" class="uk-icon-hover uk-icon-small uk-icon-facebook" data-uk-tooltip title="Share Status on Facebook"></a>
+                  <a href="#" class="uk-icon-hover uk-icon-small uk-icon-twitter" data-uk-tooltip title="Share Status on Twitter"></a>
+                  <a href="#" class="uk-icon-hover uk-icon-small uk-icon-pinterest" data-uk-tooltip title="Share Status on Pinterest"></a>
+                </div>
+              </a>
+              <hr style="margin:0" >
+            </div>
+          {{/each}}
+          <button class="uk-button uk-button-success" id="ec-start">See All</button>
+        </div>
+      </article>
+    </div>
+  </div>
+
+</template>
