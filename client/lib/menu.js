@@ -1,5 +1,6 @@
 
 Template.menu.onRendered( ()=>{
+  console.log( Session.get( "lang" ) );
   switch( Session.get( "currentMenu" ) ) {
     case "home" : $( '#ec-menu-home' ).addClass( 'ec-menu-link-active' ); break;
     case "markets" : $( '#ec-menu-markets' ).addClass( 'ec-menu-link-active' ); break;
