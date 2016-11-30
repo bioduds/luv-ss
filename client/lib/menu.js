@@ -90,7 +90,7 @@ Template.menu.events({
           }
         } else {
           UIkit.modal( "#ec-login-modal" ).hide();
-
+          console.log( Meteor.user());
         }
       });
     }

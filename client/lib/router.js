@@ -94,11 +94,23 @@ FlowRouter.route('/understand', {
     BlazeLayout.render( 'mainLayout', { content: 'present', left: 'mainLeft', stage:'understandDisplay' } );
   }
 });
-FlowRouter.route('/tests/python', {
-  name: 'tests.python',
+FlowRouter.route('/display/user/:id', {
+  name: 'display.user',
   action: function( params, queryParams ) {
-    console.log( "Test Python ", params.postId );
-    BlazeLayout.render( 'mainLayout', { content: 'present', left: 'mainLeft', stage:'pythonTest' } );
+    console.log( "Display User ", params.id );
+    BlazeLayout.render( 'mainLayout', { content: 'present', left: 'userLeft', stage:'userDisplay' } );
+  }
+});
+
+// EDITs
+FlowRouter.route('/display/user/edit/account-settings/:id', {
+  name: 'display.user',
+  action: function( params, queryParams ) {
+    console.log( "Display User ", params.id );
+    BlazeLayout.render( 'mainLayout', { content: 'present', 
+                                        left: 'userLeft', 
+                                        stage:'editAccountSettings', 
+                                        address:'noneAddressForm' } );
   }
 });
 

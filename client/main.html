@@ -2,12 +2,17 @@
   <title>luv startup stocks</title>
 </head>
 
+<body class="uk-height-1-1">
+  
+</body>
 <template name="mainLayout" >
-  <div style="max-width:1450px;margin: 0 auto;padding:0 8px;">
+  <div style="max-width:1450px;margin: 0 auto;padding:0 8px;"
+       class="uk-height-1-1">
     {{> menu}}
-    <main>
+    <main class="uk-height-1-1">
       {{>Template.dynamic template=content}}
     </main>
+    <hr class="ec-hr">
     {{> foot}}
   </div>
 </template>

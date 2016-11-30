@@ -7927,8 +7927,6 @@ html[dir="rtl"] .uk-slider > * {
 }
 
 
-
-
 a.ec-no-link:hover {
   text-decoration: none;
 }
@@ -7958,5 +7956,6 @@ a.ec-menu-link-active {
   margin:0
 }
 
+#ec-logo {}
 
 
