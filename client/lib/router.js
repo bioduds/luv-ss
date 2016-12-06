@@ -3,18 +3,23 @@ Tracker.autorun( ()=> {
   var routeName = FlowRouter.getRouteName();
   console.log("Current route name is: ", routeName);
   console.log( "Always ON" );
-  try{ $( '#ec-menu-home' ).removeClass( "ec-menu-link-active" ); } catch(e) {}
-  try{ $( '#ec-menu-markets' ).removeClass( "ec-menu-link-active" ); } catch(e) {}
-  try{ $( '#ec-menu-analysis' ).removeClass( "ec-menu-link-active" ); } catch(e) {}
-  try{ $( '#ec-menu-info' ).removeClass( "ec-menu-link-active" ); } catch(e) {}
+  try{ $( '#ec-menu-1' ).removeClass( "ec-menu-link-active" ); } catch(e) {}
+  try{ $( '#ec-menu-2' ).removeClass( "ec-menu-link-active" ); } catch(e) {}
+  try{ $( '#ec-menu-3' ).removeClass( "ec-menu-link-active" ); } catch(e) {}
+  try{ $( '#ec-menu-4' ).removeClass( "ec-menu-link-active" ); } catch(e) {}
+  try{ $( '#ec-menu-5' ).removeClass( "ec-menu-link-active" ); } catch(e) {}
+  try{ $( '#ec-menu-6' ).removeClass( "ec-menu-link-active" ); } catch(e) {}
   Session.setTemp( "currentMenu", routeName );
   switch( Session.get( "currentMenu" ) ) {
-    case "home" : $( '#ec-menu-home' ).addClass( 'ec-menu-link-active' ); break;
-    case "markets" : $( '#ec-menu-markets' ).addClass( 'ec-menu-link-active' ); break;
-    case "analysis" : $( '#ec-menu-analysis' ).addClass( 'ec-menu-link-active' ); break;
-    case "info" : $( '#ec-menu-info' ).addClass( 'ec-menu-link-active' ); break;
+    case "home" : $( '#ec-menu-1' ).addClass( 'ec-menu-link-active' ); break;
+    case "markets" : $( '#ec-menu-2' ).addClass( 'ec-menu-link-active' ); break;
+    case "analysis" : $( '#ec-menu-3' ).addClass( 'ec-menu-link-active' ); break;
+    case "valuation" : $( '#ec-menu-4' ).addClass( 'ec-menu-link-active' ); break;
+    case "wallets" : $( '#ec-menu-5' ).addClass( 'ec-menu-link-active' ); break;
+    case "info" : $( '#ec-menu-6' ).addClass( 'ec-menu-link-active' ); break;
   }
 });
+
 
 //MAIN LAYOUT
 FlowRouter.route('/', {
@@ -22,6 +27,59 @@ FlowRouter.route('/', {
   action: function( params, queryParams ) {
     console.log( "Flow Router Root", params.postId );
     BlazeLayout.render( 'mainLayout', { content: 'present', left:'mainLeft', stage:'homeDisplay' } );
+  }
+});
+// MENU
+FlowRouter.route('/markets', {
+  name: 'markets',
+  action: function( params, queryParams ) {
+    console.log( "Markets ", params.postId );
+    BlazeLayout.render( 'mainLayout', { content: 'present', left: 'mainLeft', stage:'marketsDisplay' } );
+  }
+});
+FlowRouter.route('/analysis', {
+  name: 'analysis',
+  action: function( params, queryParams ) {
+    console.log( "Markets ", params.postId );
+    BlazeLayout.render( 'mainLayout', { content: 'present', left: 'mainLeft', stage:'analysisDisplay' } );
+  }
+});
+FlowRouter.route('/valuation', {
+  name: 'valuation',
+  action: function( params, queryParams ) {
+    console.log( "Valuation ", params.postId );
+    BlazeLayout.render( 'mainLayout', { content: 'present', left: 'mainLeft', stage:'valuationDisplay' } );
+  }
+});
+FlowRouter.route('/wallets', {
+  name: 'wallets',
+  action: function( params, queryParams ) {
+    console.log( "Wallets ", params.postId );
+    BlazeLayout.render( 'mainLayout', { content: 'present', left: 'mainLeft', stage:'walletsDisplay' } );
+  }
+});
+FlowRouter.route('/info', {
+  name: 'info',
+  action: function( params, queryParams ) {
+    console.log( "Info ", params.postId );
+    BlazeLayout.render( 'mainLayout', { content: 'present', left: 'mainLeft', stage:'infoDisplay' } );
+  }
+});
+
+
+// OTHER
+FlowRouter.route('/understand', {
+  name: 'understand',
+  action: function( params, queryParams ) {
+    console.log( "Understand ", params.postId );
+    BlazeLayout.render( 'mainLayout', { content: 'present', left: 'mainLeft', stage:'understandDisplay' } );
+  }
+});
+FlowRouter.route('/display/user/:id', {
+  name: 'display.user',
+  action: function( params, queryParams ) {
+    console.log( "Display User ", params.id );
+    BlazeLayout.render( 'mainLayout', { content: 'present', left: 'userLeft', stage:'userDisplay' } );
   }
 });
 FlowRouter.route('/display/startups/:id', {
@@ -45,13 +103,6 @@ FlowRouter.route('/signIn', {
     BlazeLayout.render( 'mainLayout', { content: 'signIn' } );
   }
 });
-FlowRouter.route('/evaluation', {
-  name: 'evaluation',
-  action: function( params, queryParams ) {
-    console.log( "Evaluation ", params.postId );
-    BlazeLayout.render( 'mainLayout', { content: 'evaluation' } );
-  }
-});
 FlowRouter.route('/profile/startup/start', {
   name: 'Startup Start Profile',
   action: function( params, queryParams ) {
@@ -66,41 +117,7 @@ FlowRouter.route('/login', {
     BlazeLayout.render( 'mainLayout', { content: 'login' } );
   }
 });
-FlowRouter.route('/markets', {
-  name: 'markets',
-  action: function( params, queryParams ) {
-    console.log( "Markets ", params.postId );
-    BlazeLayout.render( 'mainLayout', { content: 'present', left: 'mainLeft', stage:'marketsDisplay' } );
-  }
-});
-FlowRouter.route('/analysis', {
-  name: 'analysis',
-  action: function( params, queryParams ) {
-    console.log( "Markets ", params.postId );
-    BlazeLayout.render( 'mainLayout', { content: 'present', left: 'mainLeft', stage:'analysisDisplay' } );
-  }
-});
-FlowRouter.route('/info', {
-  name: 'info',
-  action: function( params, queryParams ) {
-    console.log( "Info ", params.postId );
-    BlazeLayout.render( 'mainLayout', { content: 'present', left: 'mainLeft', stage:'infoDisplay' } );
-  }
-});
-FlowRouter.route('/understand', {
-  name: 'understand',
-  action: function( params, queryParams ) {
-    console.log( "Understand ", params.postId );
-    BlazeLayout.render( 'mainLayout', { content: 'present', left: 'mainLeft', stage:'understandDisplay' } );
-  }
-});
-FlowRouter.route('/display/user/:id', {
-  name: 'display.user',
-  action: function( params, queryParams ) {
-    console.log( "Display User ", params.id );
-    BlazeLayout.render( 'mainLayout', { content: 'present', left: 'userLeft', stage:'userDisplay' } );
-  }
-});
+
 
 // EDITs
 FlowRouter.route('/display/user/edit/account-settings/:id', {

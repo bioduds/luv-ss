@@ -2,9 +2,12 @@
 Template.menu.onRendered( ()=>{
   console.log( Session.get( "lang" ) );
   switch( Session.get( "currentMenu" ) ) {
-    case "home" : $( '#ec-menu-home' ).addClass( 'ec-menu-link-active' ); break;
-    case "markets" : $( '#ec-menu-markets' ).addClass( 'ec-menu-link-active' ); break;
-    case "analysis" : $( '#ec-menu-analysis' ).addClass( 'ec-menu-link-active' ); break;
+    case "home" : $( '#ec-menu-1' ).addClass( 'ec-menu-link-active' ); break;
+    case "markets" : $( '#ec-menu-2' ).addClass( 'ec-menu-link-active' ); break;
+    case "analysis" : $( '#ec-menu-3' ).addClass( 'ec-menu-link-active' ); break;
+    case "valuation" : $( '#ec-menu-4' ).addClass( 'ec-menu-link-active' ); break;
+    case "wallets" : $( '#ec-menu-5' ).addClass( 'ec-menu-link-active' ); break;
+    case "info" : $( '#ec-menu-6' ).addClass( 'ec-menu-link-active' ); break;
   }
 });
 
@@ -27,6 +30,16 @@ Template.menu.events({
   'click #ec-laguage-pt_br'( event, instance ) {
     console.log( "pt_br" );
     Session.setPersistent( "lang", "pt_br" );
+    location.reload();
+  },
+  'click #ec-laguage-es'( event, instance ) {
+    console.log( "es" );
+    Session.setPersistent( "lang", "es" );
+    location.reload();
+  },
+  'click #ec-laguage-de'( event, instance ) {
+    console.log( "de" );
+    Session.setPersistent( "lang", "de" );
     location.reload();
   }
 });
@@ -101,7 +114,8 @@ Template.menu.events({
     console.log( "Initiate Login..." );
     var email = template.find( '#ec-signup-email' ).value;
     var password = template.find( '#ec-signup-password' ).value;
-    console.log( "Values ... " + email + " " + password );
+    var password_confirm = template.find( '#ec-signup-password-confirm' ).value;
+    console.log( "Values ... " + email + " " + password + " " + password_confirm );
     
     var all_valid = true;
     $( '#ec-signup-email-error' ).html( "" );
@@ -143,6 +157,42 @@ Template.menu.events({
       all_valid = false;
       $( '#ec-signup-password' ).addClass( "uk-form-danger" );
       $( '#ec-signup-password-error' ).html( e.reason );
+    }
+    // password confirmation
+    try {
+      try{ $( '#ec-signup-password-confirm' ).removeClass( "uk-form-danger" ); } catch( _e ){}
+      $( '#ec-signup-password-confirm-error' ).html( "" );
+      $( '#ec-signup-general-error' ).html( "" );
+      if( password !== password_confirm ) {
+        all_valid = false;
+        $( '#ec-signup-password-confirm' ).addClass( "uk-form-danger" );
+        $( '#ec-signup-password-confirm-error' ).html( "Password Confirmation did not match." );
+      }
+    } catch(e) {}
+    try {
+      var recaptcha = $( '#g-recaptcha-response' ).val();
+      if( !recaptcha ) {
+        all_valid = false;
+        $( '#ec-signup-general-error' ).html( "Please, proove you're no Robot" );
+      } else {
+        Meteor.call( "recaptcha", recaptcha, ( error, data )=>{
+          if( error ) {
+            console.debug( error );
+            all_valid = false;
+            $( '#ec-signup-general-error' ).html( "Server Error on reCAPTCHA" );
+          }
+          console.debug( data );
+          if( !data ) {
+            all_valid = false;
+            $( '#ec-signup-general-error' ).html( "Failed reCAPTCHA" );
+          } else {
+            $( '#ec-signup-general-error' ).html( "" );
+          }
+        });
+      }
+    } catch(e) {
+      all_valid = false;
+      $( '#ec-signup-general-error' ).html( "Error processing reCAPTCHA" );
     }
     if( all_valid ) {
       console.log( "All Valid - implement signup" );

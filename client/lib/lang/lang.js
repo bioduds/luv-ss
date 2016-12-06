@@ -1,39 +1,21 @@
+/* 
+Translation System
+luv Startup-Aktien
+Eduardo Capanema
+Dez., 2016
+*/
 
-if( !Session.get( "lang" ) ) {
-  Session.setPersistent( "lang", "en" );
-}
-
+if( !Session.get( "lang" ) ) { Session.setPersistent( "lang", "en" ); }
 language = new Language( Session.get( "lang" ) );
-
 function Language( lang ) {
   this.lang = lang;
   this.vars = en_vars;
-  this.flag = "https://s3-us-west-2.amazonaws.com/luv-ss/img/site/flags/24/us.png";
-  
   switch( lang ) {
-    case "en" : 
-      this.vars = en_vars; 
-      this.flag = "https://s3-us-west-2.amazonaws.com/luv-ss/img/site/flags/24/us.png";
-      break;
-    case "pt_br" : 
-      this.vars = pt_br_vars;
-      this.flag = "https://s3-us-west-2.amazonaws.com/luv-ss/img/site/flags/24/br.png";
-      break;
+    case "en" : this.vars = en_vars; break;
+    case "pt_br" : this.vars = pt_br_vars; break;
+    case "de" : this.vars = de_vars; break;
+    case "es" : this.vars = es_vars; break;
   }
-  
 }
-
-Template.registerHelper( 'lang', ( vars )=>{ 
-  
-  switch( vars ) {
-    case "flag" : return this.language.flag;
-    case "menu.home" : return this.language.vars.menu.home;
-    case "menu.info" : return this.language.vars.menu.info;
-    default : return "Menu";
-  }
-  
-});
-
-
-
+Template.registerHelper( 'lang', ( vars )=>{ return this.language.vars[ vars ]; });
 
